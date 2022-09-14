@@ -16,5 +16,15 @@ with open(filelocation) as MCAfile:
         except ValueError:
             line = MCAfile.readline()
 
+plt.figure(1)
+plt.subplot(211)
 plt.plot(counts)
+plt.xlabel('Channel')
+plt.ylabel('Counts')
+plt.subplot(212)
+plt.plot(counts)
+plt.xlabel('Channel')
+plt.ylabel('Counts')
+plt.yscale('log')
+
 plt.show()
