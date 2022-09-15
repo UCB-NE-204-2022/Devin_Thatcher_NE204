@@ -46,5 +46,22 @@ for x in range(arrayheight):
 plt.xlabel('Channel')
 plt.ylabel('Counts')
 plt.yscale('log')
-
 plt.show()
+
+while True:
+    sumOption = input("Enter 'sum' to sum data and re-plot: ")
+    if sumOption == 'sum':
+        summeddata = np.sum(stackedData, axis=0)
+        plt.title('MCA Data')
+        plt.figure(1)
+        plt.subplot(211)
+        plt.plot(summeddata)
+        plt.xlabel('Channel')
+        plt.ylabel('Counts')
+        plt.subplot(212)
+        plt.plot(summeddata)
+        plt.xlabel('Channel')
+        plt.ylabel('Counts')
+        plt.yscale('log')
+        plt.show()
+        break
