@@ -5,7 +5,7 @@ import numpy as np
 rt = 150 #risetime
 ft = 200 #flattop
 dc = 10000 #decayconstant
-XRange = 2000
+XRange = 3000
 
 filelocation = input("Enter file location: ") #copy and paste file path
 filelocation = filelocation.strip('"')

@@ -7,7 +7,7 @@ with h5py.File(filelocation, 'r') as f:
     data = np.array(f['raw_data'])
     spectra = []
     for a in range(np.size(data, 0)):
-        pulse = data[a, :2000]
+        pulse = data[a, :3000]
         baseline = data[a, :900]
         pulsemax = np.amax(pulse)
         pulsemin = np.average(baseline)
