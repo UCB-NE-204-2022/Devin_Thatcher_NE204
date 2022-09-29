@@ -7,12 +7,11 @@ with h5py.File(filelocation, 'r') as f:
     data = np.array(f['raw_data'])
     spectra = []
     for a in range(np.size(data, 0)):
-        pulse = data[a, 950:1100]
-        baseline = data[a, :950]
+        pulse = data[a, :2000]
+        baseline = data[a, :900]
         pulsemax = np.amax(pulse)
         pulsemin = np.average(baseline)
         pulseheight = pulsemax - pulsemin
-        if pulseheight < 500:
-            spectra.append(pulseheight)
+        spectra.append(pulseheight)
     with open('spectradata.npy', 'wb') as f2:
         np.save(f2, np.array(spectra))
