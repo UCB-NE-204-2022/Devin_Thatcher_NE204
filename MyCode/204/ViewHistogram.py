@@ -10,10 +10,10 @@ for a in range(np.size(spectra)):
 ratio = np.average(spectraratio)
 for a in range(np.size(spectra)):
     spectra[a]=ratio*spectra[a]
-resolution = int(np.amax(spectra)/50)
+resolution = int(np.amax(spectra)/20)
 plt.hist(spectra, bins=resolution, histtype='step', label='raw_data max pulse height')
 plt.hist(spectra2, bins=resolution, histtype='step', label='after trapezoidal filter + pole zero correction')
-plt.xlim(0, 50000)
+plt.xlim(0)
 plt.legend(loc='upper left')
 plt.show()
 

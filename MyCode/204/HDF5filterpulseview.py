@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 rt = 150 #risetime
 ft = 200 #flattop
 dc = 10000 #decayconstant
-pulsesToPlot = 1000
+pulsesToPlot = 100
 XRange = 3000
 
 filelocation = input("Enter file location: ") #copy and paste file path
