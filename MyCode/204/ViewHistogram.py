@@ -1,8 +1,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-spectra = np.load('spectradata.npy')
-spectra2 = np.load('spectradata2.npy')
+filelocation = input("Enter spectra location: ")
+filelocation = filelocation.strip('"')
+spectra = np.load(filelocation)
+filelocation = input("Enter spectra2 location: ")
+filelocation = filelocation.strip('"')
+spectra2 = np.load(filelocation)
 ratio = float(np.amax(spectra2))/float(np.amax(spectra))
 spectraratio = []
 for a in range(np.size(spectra)):
