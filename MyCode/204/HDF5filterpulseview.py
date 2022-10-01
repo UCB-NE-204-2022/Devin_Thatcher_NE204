@@ -12,18 +12,15 @@ XRange = 3000
 filelocation = input("Enter file location: ") #copy and paste file path
 filelocation = filelocation.strip('"')
 with h5py.File(filelocation, 'r') as f:
-    data = np.array(f['raw_data'])
     pulses = np.empty([pulsesToPlot, XRange])
     for a in range(pulsesToPlot):
-        pulse = data[a, :XRange]
-        size = np.size(pulse)
+        pulse = np.array(f['raw_data'][a, :XRange])
         baseline = np.average(pulse[:900])
         bpulse = []
         cpulse = []
         dpulse = [0]
-        for b in range(size): #take baseline average to be 0
+        for b in range(XRange):
             bpulse.append(pulse[b] - baseline) 
-        for b in range(size): #filter values
             if b < rt:
                 cpulse.append(bpulse[b])
             elif rt <= b <= rt+ft-1:
@@ -32,7 +29,7 @@ with h5py.File(filelocation, 'r') as f:
                 cpulse.append(bpulse[b]-bpulse[b-rt]-bpulse[b-(rt+ft)])
             else:
                 cpulse.append(bpulse[b]-bpulse[b-rt]-bpulse[b-(rt+ft)]+bpulse[b-(2*rt+ft)])
-        for b in range(1, size): #integrate filtered values (with pole zero correction)
+        for b in range(1, XRange):
             dpulse.append(dpulse[b-1]*(1+1/dc)+cpulse[b])
         pulses[a]=np.array(dpulse)
     for x in range(pulsesToPlot):
