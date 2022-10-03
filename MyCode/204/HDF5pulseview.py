@@ -2,11 +2,14 @@ import h5py
 import numpy as np
 import matplotlib.pyplot as plt
 
+pulsesToPlot = 100
+XRange = 3000
+
 filelocation = input("Enter file location: ")
 filelocation = filelocation.strip('"')
 with h5py.File(filelocation, 'r') as f:
-    data = np.array(f['raw_data'][:, :3000])
-    for x in range(0,100):
-        plt.plot(data[x])
+    for a in range(0, pulsesToPlot):
+        pulse = np.array(f['raw_data'][a, :XRange])
+        plt.plot(pulse)
 
 plt.show()

@@ -1,14 +1,15 @@
 import h5py
 import numpy as np
 
+XRange = 3000
+
 filelocation = input("Enter file location: ")
 filelocation = filelocation.strip('"')
 with h5py.File(filelocation, 'r') as f:
-    data = np.array(f['raw_data'])
     spectra = []
-    for a in range(np.size(data, 0)):
-        pulse = data[a, :3000]
-        baseline = data[a, :900]
+    for a in range(np.size(f['event_data'])):
+        pulse = np.array(f['raw_data'][a, :XRange])
+        baseline = np.average(pulse[:900])
         pulsemax = np.amax(pulse)
         pulsemin = np.average(baseline)
         pulseheight = pulsemax - pulsemin
