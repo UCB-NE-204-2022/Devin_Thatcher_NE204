@@ -6,8 +6,9 @@ import matplotlib.pyplot as plt
 rt = 150 #risetime
 ft = 200 #flattop
 dc = 10000 #decayconstant
-pulsesToPlot = 100
+pulsesToPlot = 200
 XRange = 3000
+preTrgrDly = 1000
 
 filelocation = input("Enter file location: ") #copy and paste file path
 filelocation = filelocation.strip('"')
@@ -15,7 +16,7 @@ with h5py.File(filelocation, 'r') as f:
     pulses = np.empty([pulsesToPlot, XRange])
     for a in range(pulsesToPlot):
         pulse = np.array(f['raw_data'][a, :XRange])
-        baseline = np.average(pulse[:900])
+        baseline = np.average(pulse[:int(preTrgrDly//1.5)])
         bpulse = []
         cpulse = []
         dpulse = [0]

@@ -6,6 +6,7 @@ rt = 150 #risetime
 ft = 200 #flattop
 dc = 10000 #decayconstant
 XRange = 3000
+preTrgrDly = 1000
 
 filelocation = input("Enter file location: ") #copy and paste file path
 filelocation = filelocation.strip('"')
@@ -13,7 +14,7 @@ with h5py.File(filelocation, 'r') as f:
     spectra = []
     for a in range(np.size(f['event_data'])):
         pulse = np.array(f['raw_data'][a, :XRange])
-        baseline = np.average(pulse[:900])
+        baseline = np.average(pulse[:int(preTrgrDly//1.5)])
         bpulse = []
         cpulse = []
         dpulse = [0]
@@ -30,5 +31,6 @@ with h5py.File(filelocation, 'r') as f:
         for b in range(1, XRange):
             dpulse.append(dpulse[b-1]*(1+1/dc)+cpulse[b])
         spectra.append(np.amax(dpulse))
-    with open('spectradata2.npy', 'wb') as f2:
+    spectraname = input("Enter name of .npy file to save spectra: ")
+    with open(spectraname + '.npy', 'wb') as f2:
         np.save(f2, np.array(spectra))
