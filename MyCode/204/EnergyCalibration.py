@@ -18,7 +18,7 @@ while True:
             filelocation = input("Enter location of calibration isotope spectra: ").strip('"')
             spectra = np.load(filelocation)
             hist, bins = np.histogram(spectra, bins = spectrarange//20, range = (0, spectrarange))
-            peaklocations, _ = find_peaks(hist, prominence = int(np.amax(hist))/10)
+            peaklocations, _ = find_peaks(hist, distance = 100, prominence = int(np.amax(hist))/10)
             for x in range(np.size(peaklocations)):
                 peakheights.append(hist[int(peaklocations[x])])
             peakheights.sort(reverse=True)
