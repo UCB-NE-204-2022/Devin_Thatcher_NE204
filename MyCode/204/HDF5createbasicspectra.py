@@ -4,7 +4,7 @@ import numpy as np
 XRange = 3000
 preTrgrDly = 1000
 
-filelocation = input("Enter file location: ")
+filelocation = input("Enter .h5 file location: ")
 filelocation = filelocation.strip('"')
 with h5py.File(filelocation, 'r') as f:
     spectra = []

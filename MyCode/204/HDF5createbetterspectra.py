@@ -8,7 +8,7 @@ dc = 10000 #decayconstant
 XRange = 3000
 preTrgrDly = 1000
 
-filelocation = input("Enter file location: ") #copy and paste file path
+filelocation = input("Enter .h5 file location: ") #copy and paste file path
 filelocation = filelocation.strip('"')
 with h5py.File(filelocation, 'r') as f:
     spectra = []
