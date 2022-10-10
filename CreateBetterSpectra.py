@@ -3,7 +3,7 @@ import numpy as np
 
 #adjust these values
 rt = 150 #risetime
-ft = 200 #flattop
+ft = 300 #flattop
 dc = 10000 #decayconstant
 XRange = 3000
 preTrgrDly = 1000

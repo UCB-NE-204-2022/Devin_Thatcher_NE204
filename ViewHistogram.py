@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 
 spectrarange = 100000
 calfactor = 1
-allFWHM = []
 
 calfilelocation = input("Copy & paste calibration data .txt file path, or press enter to continue without calibrated energies: ").strip('"')
 if calfilelocation != '':
@@ -29,6 +28,7 @@ while True:
         FWHM = peak_widths(hist, peaklocations, rel_height = 0.5)
         Xenergy = []
         peaklocations2 = []
+        allFWHM = []
         x_label = 'channel'
         if calfactor != 1:
             x_label = 'keV'
@@ -36,10 +36,12 @@ while True:
             Xenergy.append(x/calfactor)
         for x in range(np.size(peaklocations)):
             if 5 < FWHM[0][x] < 20:
-                print(str(peaklocations[x]/calfactor) + ' ' + str(x_label) + ' | ' + str(hist[int(peaklocations[x])]) + ' counts | ' + str(FWHM[0][x]) + ' ' + str(x_label) + ' FWHM')
+                print(str(peaklocations[x]/calfactor) + ' ' + str(x_label) + ' | ' + str(hist[int(peaklocations[x])]) + ' counts | ' + str(FWHM[0][x]/calfactor) + ' ' + str(x_label) + ' FWHM')
                 peaklocations2.append(peaklocations[x])
-                allFWHM.append(FWHM[0][x])
+                allFWHM.append(FWHM[0][x]/calfactor)
         np_peaklocations2 = np.array(peaklocations2, dtype = int)
+        averageFWHM = sum(allFWHM)/len(allFWHM)
+        print('Average FWHM = ' + str(averageFWHM) + ' ' + str(x_label))
         plt.plot(Xenergy, hist, label = filelocation)
         plt.plot(np_peaklocations2/calfactor, hist[np_peaklocations2], "vk")
     except:
@@ -48,8 +50,6 @@ while True:
         else:
             print("Cannot load file")
 
-averageFWHM = sum(allFWHM)/len(allFWHM)
-print('Average FWHM = ' + str(averageFWHM) + ' ' + str(x_label))
 if calfactor == 1:
     plt.xlabel('Channel')
 else:
