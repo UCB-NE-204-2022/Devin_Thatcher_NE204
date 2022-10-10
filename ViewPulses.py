@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 pulsesToPlot = 100
 XRange = 3000
 
-filelocation = input("Enter .h5 file location: ")
+filelocation = input("Copy & paste .h5 file path: ")
 filelocation = filelocation.strip('"')
 with h5py.File(filelocation, 'r') as f:
     for a in range(0, pulsesToPlot):

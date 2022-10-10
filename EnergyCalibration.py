@@ -15,7 +15,7 @@ while True:
     energylist = []
     while True:
         try:
-            filelocation = input("Enter location of calibration isotope spectra: ").strip('"')
+            filelocation = input("Copy & paste calibration isotope .npy file path: ").strip('"')
             spectra = np.load(filelocation)
             hist, bins = np.histogram(spectra, bins = spectrarange//20, range = (0, spectrarange))
             peaklocations, _ = find_peaks(hist, distance = 10, prominence = int(np.amax(hist))/15)
@@ -29,6 +29,8 @@ while True:
             peakheights.sort(reverse=True)
             plt.plot(hist, label=filelocation)
             plt.plot(np_peaklocations2, hist[np_peaklocations2], "vk")
+            plt.xlabel('Channel')
+            plt.ylabel('Counts')
             plt.xlim(0)
             plt.legend(loc='upper left')
             plt.show()
@@ -37,7 +39,7 @@ while True:
             print("Cannot load file")
     while True:
         try:
-            energy = input("Enter energies (in keV) of the tallest peaks indicated: ")
+            energy = input("Enter energies one by one (in keV) of the tallest peaks indicated: ")
             energylist.append(float(energy))
         except:
             if energy == '':
