@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 #adjust these values
 rt = 150 #risetime
-ft = 200 #flattop
+ft = 300 #flattop
 dc = 10000 #decayconstant
 pulsesToPlot = 200
 XRange = 3000

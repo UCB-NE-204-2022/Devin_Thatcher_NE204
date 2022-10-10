@@ -12,7 +12,7 @@ The separate programs in this repository allows a user to:
 Asks for HDF5 file location, then plots the first 3000 data points for the first 100 pulses.
 
 ### ViewFilteredPulses.py: 
-Asks for HDF5 file location, then for each pulse: subtracts the average of the pre-trigger delay, uses a trapezoid filter (d = v(j) - v(j - risetime) - v(j - risetime - flattop) + v(j - 2*risetime - flattop)), integrates with basic pole-zero correction (1+1/decayconstant), then plots the first 3000 data points for the first 100 pulses. Rise time is set for 150, flat top is set for 200, and decay constant set for 10000.
+Asks for HDF5 file location, then for each pulse: subtracts the average of the pre-trigger delay, uses a trapezoid filter (d = v(j) - v(j - risetime) - v(j - risetime - flattop) + v(j - 2*risetime - flattop)), integrates with basic pole-zero correction (1+1/decayconstant), then plots the first 3000 data points for the first 100 pulses. Rise time is set for 150, flat top is set for 300, and decay constant set for 10000.
 
 ### CreateBasicSpectra.py: 
 Asks for HDF5 file location, then calculates the difference between the maximum of the first 3000 data points and the average of the pre-trigger delay for each pulse. An array of the differences for each pulse is saved to a .npy file.

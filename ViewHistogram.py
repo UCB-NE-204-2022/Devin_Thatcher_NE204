@@ -37,7 +37,7 @@ while True:
             Xenergy.append(x/calfactor)
         for x in range(np.size(peaklocations)):
             if 5 < FWHM[0][x] < 20:
-                print(str(peaklocations[x]/calfactor) + ' ' + str(x_label) + ' | ' + str(hist[int(peaklocations[x])]) + ' counts | ' + str(FWHM[0][x]/calfactor) + ' ' + str(x_label) + ' FWHM | ' + str(100*FWHM[0][x]/peaklocations[x]) + ' percent energy resolution')
+                print(str(peaklocations[x]/calfactor) + ' ' + str(x_label) + ' | ' + str(hist[int(peaklocations[x])]) + ' counts | ' + str(FWHM[0][x]/calfactor) + ' ' + str(x_label) + ' FWHM | ' + str(100*FWHM[0][x]/peaklocations[x]) + ' percent resolution')
                 peaklocations2.append(peaklocations[x])
                 allFWHM.append(FWHM[0][x]/calfactor)
                 resolution.append(100*FWHM[0][x]/peaklocations[x])
