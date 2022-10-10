@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 rt = 150 #risetime
 ft = 300 #flattop
 dc = 10000 #decayconstant
-pulsesToPlot = 200
+pulsesToPlot = 100
 XRange = 3000
 preTrgrDly = 1000
 
