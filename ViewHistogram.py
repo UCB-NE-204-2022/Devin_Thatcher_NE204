@@ -29,6 +29,7 @@ while True:
         Xenergy = []
         peaklocations2 = []
         allFWHM = []
+        resolution = []
         x_label = 'channel'
         if calfactor != 1:
             x_label = 'keV'
@@ -36,12 +37,14 @@ while True:
             Xenergy.append(x/calfactor)
         for x in range(np.size(peaklocations)):
             if 5 < FWHM[0][x] < 20:
-                print(str(peaklocations[x]/calfactor) + ' ' + str(x_label) + ' | ' + str(hist[int(peaklocations[x])]) + ' counts | ' + str(FWHM[0][x]/calfactor) + ' ' + str(x_label) + ' FWHM')
+                print(str(peaklocations[x]/calfactor) + ' ' + str(x_label) + ' | ' + str(hist[int(peaklocations[x])]) + ' counts | ' + str(FWHM[0][x]/calfactor) + ' ' + str(x_label) + ' FWHM | ' + str(100*FWHM[0][x]/peaklocations[x]) + ' percent energy resolution')
                 peaklocations2.append(peaklocations[x])
                 allFWHM.append(FWHM[0][x]/calfactor)
+                resolution.append(100*FWHM[0][x]/peaklocations[x])
         np_peaklocations2 = np.array(peaklocations2, dtype = int)
         averageFWHM = sum(allFWHM)/len(allFWHM)
-        print('Average FWHM = ' + str(averageFWHM) + ' ' + str(x_label))
+        averageresolution = sum(resolution)/len(resolution)
+        print('Average FWHM = ' + str(averageFWHM) + ' ' + str(x_label) + ' | Average resolution = ' + str(averageresolution) + ' percent')
         plt.plot(Xenergy, hist, label = filelocation)
         plt.plot(np_peaklocations2/calfactor, hist[np_peaklocations2], "vk")
     except:
@@ -56,6 +59,6 @@ else:
     plt.xlabel('Energy in keV')
 plt.ylabel('Counts')
 plt.xlim(0)
-plt.legend(loc='upper left')
+plt.legend(loc='upper center')
 plt.show()
 
