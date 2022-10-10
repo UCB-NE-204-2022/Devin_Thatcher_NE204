@@ -27,8 +27,25 @@ If \*n\* energies are specified, they must correspond with the highest \*n\* pea
 
 calibrationdata.txt with data for Co60, Eu152, Cs137, Na22, and Ba133 has already been provided.
 
-### ViewHistogram.py: First asks for location of calibrationdata.txt.
+### ViewHistogram.py: 
+First asks for location of calibrationdata.txt.
 
 If nothing is entered, the program will ask for .npy file locations in a loop, creating histogram data for each file and printing the channel, height, and full width half max of the peaks for each set of histogram data. The average FWHM is also printed. When the user is done entering .npy file locations, the program will plot all histograms with peaks indicated on the same plot, and indicate the average FWHM of all peaks.
 
 If calibrationdata.txt is provided, the program calculates a calibration factor by taking the average ratio of each channel and energy. The same process as above will then occur, but prints energy instead of channel for each peak, and the x-axis is scaled for energy.
+
+## How to use
+1. Run CreateBetterSpectra.py
+   - Copy and paste path to HDF5 file
+   - When prompted, enter name you want .npy file saved as
+2. Run EnergyCalibration.py
+   - Copy and paste path to .npy file
+   - Enter energies one by one for the highest peaks
+     - If \*n\* energies are specified, they must correspond with the highest \*n\* peaks.
+   - Program will create calibrationdata.txt and save channel/energy data to it (appends if calibrationdata.txt exists already)
+   - Can repeat for multiple .npy files
+3. Run ViewHistogram.py
+   - Copy and paste path to calibrationdata.txt, or press enter to use without energy calibration
+   - Copy and paste path to .npy file
+   - Repeat for multiple .npy files
+   - Press enter to plot histogram(s)
