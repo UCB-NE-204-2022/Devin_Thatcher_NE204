@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 pulsesToPlot = 100
-XRange = 3000
+XRange = 1800
 
 filelocation = input("Copy & paste .h5 file path: ")
 filelocation = filelocation.strip('"')

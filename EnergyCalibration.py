@@ -22,7 +22,7 @@ while True:
             FWHM = peak_widths(hist, peaklocations, rel_height = 0.5)
             for x in range(np.size(peaklocations)):
                 if 5 < FWHM[0][x] < 20:
-                    print('X axis location: ' + str(peaklocations[x]) + ' | ' + str(hist[int(peaklocations[x])]) + ' counts | ' + str(FWHM[0][x]) + ' FWHM')
+                    print('Channel: ' + str(peaklocations[x]) + ' | ' + str(hist[int(peaklocations[x])]) + ' counts | ' + str(FWHM[0][x]) + ' FWHM')
                     peaklocations2.append(peaklocations[x])
                     peakheights.append(hist[int(peaklocations[x])])
             np_peaklocations2 = np.array(peaklocations2, dtype = int)   
@@ -39,7 +39,7 @@ while True:
             print("Cannot load file")
     while True:
         try:
-            energy = input("Enter energies one by one (in keV) of the tallest peaks indicated: ")
+            energy = input("Enter energies one by one (in keV) of the tallest peaks indicated (press enter when done): ")
             energylist.append(float(energy))
         except:
             if energy == '':

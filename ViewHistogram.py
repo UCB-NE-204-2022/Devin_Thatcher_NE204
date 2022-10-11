@@ -21,7 +21,7 @@ if calfilelocation != '':
 
 while True:
     try:
-        filelocation = input("Enter spectra location: ").strip('"')
+        filelocation = input("Copy & paste isotope .npy file path (press enter when done): ").strip('"')
         spectra = np.load(filelocation)
         hist, bins = np.histogram(spectra, bins = spectrarange//20, range = (0, spectrarange))
         peaklocations, _ = find_peaks(hist, distance = 10, prominence = int(np.amax(hist))/10)
@@ -44,7 +44,7 @@ while True:
         np_peaklocations2 = np.array(peaklocations2, dtype = int)
         averageFWHM = sum(allFWHM)/len(allFWHM)
         averageresolution = sum(resolution)/len(resolution)
-        print('Average FWHM = ' + str(averageFWHM) + ' ' + str(x_label) + ' | Average resolution = ' + str(averageresolution) + ' percent')
+        print('Average FWHM = ' + str(averageFWHM) + ' ' + str(x_label) + ' | Average resolution = ' + str(averageresolution) + ' percent\n')
         plt.plot(Xenergy, hist, label = filelocation)
         plt.plot(np_peaklocations2/calfactor, hist[np_peaklocations2], "vk")
     except:

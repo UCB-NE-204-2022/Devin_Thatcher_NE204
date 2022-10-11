@@ -7,7 +7,7 @@ rt = 150 #risetime
 ft = 300 #flattop
 dc = 10000 #decayconstant
 pulsesToPlot = 100
-XRange = 3000
+XRange = 1800
 preTrgrDly = 1000
 
 filelocation = input("Copy & paste .h5 file path: ")

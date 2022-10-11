@@ -9,16 +9,16 @@ The separate programs in this repository allows a user to:
 ## Description of each program
 
 ### ViewPulses.py: 
-Asks for HDF5 file location, then plots the first 3000 data points for the first 100 pulses.
+Asks for HDF5 file location, then plots the first 1800 data points for the first 100 pulses.
 
 ### ViewFilteredPulses.py: 
-Asks for HDF5 file location, then for each pulse: subtracts the average of the pre-trigger delay, uses a trapezoid filter (d = v(j) - v(j - risetime) - v(j - risetime - flattop) + v(j - 2*risetime - flattop)), integrates with basic pole-zero correction (1+1/decayconstant), then plots the first 3000 data points for the first 100 pulses. Rise time is set for 150, flat top is set for 300, and decay constant set for 10000.
+Asks for HDF5 file location, then for each pulse: subtracts the average of the pre-trigger delay, uses a trapezoid filter (d = v(j) - v(j - risetime) - v(j - risetime - flattop) + v(j - 2*risetime - flattop)), integrates with basic pole-zero correction (1+1/decayconstant), then plots the first 1800 data points for the first 100 pulses. Rise time is set for 150, flat top is set for 300, and decay constant set for 10000.
 
 ### CreateBasicSpectra.py: 
-Asks for HDF5 file location, then calculates the difference between the maximum of the first 3000 data points and the average of the pre-trigger delay for each pulse. An array of the differences for each pulse is saved to a .npy file.
+Asks for HDF5 file location, then calculates the difference between the maximum of the first 1800 data points and the average of the pre-trigger delay for each pulse. An array of the differences for each pulse is saved to a .npy file.
 
 ### CreateBetterSpectra.py: 
-Asks for HDF5 file location, then for each pulse: subtracts the average of the pre-trigger delay, uses a trapezoid filter, integrates with basic pole-zero correction, and finds the maximum of the first 3000 data points. An array of the maximum for each pulse is saved to a .npy file. Takes about 20 minutes for a 5 GB HDF5 file.
+Asks for HDF5 file location, then for each pulse: subtracts the average of the pre-trigger delay, uses a trapezoid filter, integrates with basic pole-zero correction, and finds the maximum of the first 1800 data points. An array of the maximum for each pulse is saved to a .npy file. Takes about 20 minutes for a 5 GB HDF5 file.
 
 ### EnergyCalibration.py: 
 Asks for .npy file location then plots a histogram. Peaks are indicated on the histogram, and the program prints the channel, heights, and full width half max of those peaks. Enter the energies one by one (in keV) of a few of the highest peaks indicated, and the program will match the energies with the channel of those peaks, appending that data to calibrationdata.txt. The text file can be checked to see that the energies are matched with the correct peaks. This program will loop until no .npy file location is given.
