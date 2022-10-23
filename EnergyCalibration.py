@@ -3,8 +3,6 @@ from scipy.signal import find_peaks, peak_widths
 import matplotlib.pyplot as plt
 from datetime import datetime
 
-spectrarange = 100000
-
 while True:
     isotope = input("Enter name of isotope: ")
     if isotope == '':
@@ -16,15 +14,15 @@ while True:
     while True:
         try:
             filelocation = input("Copy & paste calibration isotope .npy file path: ").strip('"')
+            spectrarange = int(input("Enter rise time: "))*500
             spectra = np.load(filelocation)
-            hist, bins = np.histogram(spectra, bins = spectrarange//20, range = (0, spectrarange))
-            peaklocations, _ = find_peaks(hist, distance = 10, prominence = int(np.amax(hist))/15)
+            hist, bins = np.histogram(spectra, bins = 5000, range = (0, spectrarange))
+            peaklocations, _ = find_peaks(hist, distance = 10, prominence = int(np.amax(hist))/5)
             FWHM = peak_widths(hist, peaklocations, rel_height = 0.5)
             for x in range(np.size(peaklocations)):
-                if 5 < FWHM[0][x] < 20:
-                    print('Channel: ' + str(peaklocations[x]) + ' | ' + str(hist[int(peaklocations[x])]) + ' counts | ' + str(FWHM[0][x]) + ' FWHM')
-                    peaklocations2.append(peaklocations[x])
-                    peakheights.append(hist[int(peaklocations[x])])
+                print('Channel: ' + str(peaklocations[x]) + ' | ' + str(hist[int(peaklocations[x])]) + ' counts | ' + str(FWHM[0][x]) + ' FWHM')
+                peaklocations2.append(peaklocations[x])
+                peakheights.append(hist[int(peaklocations[x])])
             np_peaklocations2 = np.array(peaklocations2, dtype = int)   
             peakheights.sort(reverse=True)
             plt.plot(hist, label=filelocation)
@@ -32,7 +30,7 @@ while True:
             plt.xlabel('Channel')
             plt.ylabel('Counts')
             plt.xlim(0)
-            plt.legend(loc='upper left')
+            plt.legend(loc='upper right')
             plt.show()
             break
         except:
@@ -51,7 +49,7 @@ while True:
     with open('calibrationdata.txt', 'a') as f:
         now = datetime.now()
         dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-        f.write('\n' + isotope + '\n' + dt_string + '\n')
+        f.write('\n' + isotope + ' rise time: ' + str(spectrarange/500) + '\n' + dt_string + '\n')
         x = 0
         for y in range(np.size(peaklocations2)):
             if hist[int(peaklocations2[y])] in peakheights2:
