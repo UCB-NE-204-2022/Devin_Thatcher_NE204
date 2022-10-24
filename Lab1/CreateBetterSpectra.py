@@ -7,6 +7,7 @@ rt = 350 #risetime
 ft = 200 #flattop
 preTrgrDly = 1000
 XRange = 10000
+events = 120000
 
 def func(x, a, c, d):
     return a*np.exp(-c*x)+d
@@ -16,7 +17,7 @@ filelocation = filelocation.strip('"')
 with h5py.File(filelocation, 'r') as f:
     useablefraction = 0
     spectra = []
-    for a in range(120000):
+    for a in range(events):
         try:
             pulse = np.array(f['raw_data'][a, :XRange])
             baseline = np.average(pulse[:int(preTrgrDly//1.5)])
@@ -45,6 +46,7 @@ with h5py.File(filelocation, 'r') as f:
                 print(useablefraction)
         except:
             pass
+    print(useablefraction/events*100 + 'percent successful')
     spectraname = input("Enter name of .npy file to save spectra: ")
     with open(spectraname + '.npy', 'wb') as f2:
         np.save(f2, np.array(spectra))

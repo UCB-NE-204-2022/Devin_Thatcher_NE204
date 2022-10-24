@@ -8,7 +8,7 @@ rt = 350 #risetime
 ft = 200 #flattop
 preTrgrDly = 1000
 XRange = 10000
-pulsesToPlot = 500
+events = 1000
 
 def func(x, a, c, d):
     return a*np.exp(-c*x)+d
@@ -16,8 +16,8 @@ def func(x, a, c, d):
 filelocation = input("Copy & paste .h5 file path: ")
 filelocation = filelocation.strip('"')
 with h5py.File(filelocation, 'r') as f:
-    pulses = np.empty([pulsesToPlot, preTrgrDly+2*rt+ft])
-    for a in range(pulsesToPlot):
+    pulses = np.empty([events, preTrgrDly+2*rt+ft])
+    for a in range(events):
         try:
             pulse = np.array(f['raw_data'][a, :XRange])
             baseline = np.average(pulse[:int(preTrgrDly//1.5)])
@@ -44,7 +44,7 @@ with h5py.File(filelocation, 'r') as f:
                 pulses[a]=np.array(dpulse)
         except:
             pass
-    for x in range(pulsesToPlot):
+    for x in range(events):
         plt.plot(pulses[x])
 
 plt.show()

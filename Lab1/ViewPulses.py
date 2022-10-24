@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
-pulsesToPlot = 500
+pulsesToPlot = 20
 XRange = 10000
 
 def func(x, a, c, d):
@@ -22,7 +22,6 @@ with h5py.File(filelocation, 'r') as f:
             decay = bpulse[1100:XRange]
             x = np.linspace(1100, XRange, XRange-1100)
             popt, pcov = curve_fit(func, x, decay, [200, 0.0001, 0])
-            print(popt)
             plt.plot(bpulse)
             plt.plot(x, func(x, *popt))
         except:
