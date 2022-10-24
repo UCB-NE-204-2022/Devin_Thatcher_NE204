@@ -12,13 +12,15 @@ The separate programs in this repository allows a user to:
 Asks for HDF5 file location, then plots the first 10000 data points for the first 500 pulses. Fits an exponential to each pulse, and plots the exponential.
 
 ### ViewFilteredPulses.py: 
-Asks for HDF5 file location, then for the first 500 pulses: subtracts from the pulse the average of the pre-trigger delay, then fits an exponential. If the parameters popt[0, 1, 2] found for the exponential fit are greater than zero: uses a trapezoid filter (d = v(j) - v(j - risetime) - v(j - risetime - flattop) + v(j - 2*risetime - flattop)), integrates with pole-zero correction (1+popt[1]), then plots filtered pulse. Rise time is set for 350, flat top is set for 200.
+Asks for HDF5 file location, then for the first 500 pulses: subtracts from the pulse the average of the pre-trigger delay, then fits an exponential. If the parameters popt[0, 1, 2] found for the exponential fit are greater than zero: uses a trapezoid filter (d = v(j) - v(j - risetime) - v(j - risetime - flattop) + v(j - 2*risetime - flattop)), integrates with pole-zero correction (1+popt[1]), then plots filtered pulse. Rise time is set for 350, flat top is set for 200 (1.4 uS and 0.8 uS).
 
 ### CreateBasicSpectra.py: 
 Asks for HDF5 file location, then calculates the difference between the maximum of the first 2000 data points and the average of the pre-trigger delay for each pulse. An array of the differences for each pulse is saved to a .npy file.
 
 ### CreateBetterSpectra.py: 
 Asks for HDF5 file location, then for the first 120000 pulses: subtracts from the pulse the average of the pre-trigger delay, then fits an exponential. If the parameters found for the exponential fit are greater than zero: uses a trapezoid filter and integrates with pole-zero correction. An array of the average of each flat top is saved to a .npy file. Program also prints how many pulses have been processed successfully, since it takes a while to run.
+
+Used to create .npy files for Co60, Eu152, Cs137, Na22, and Ba133 in SampleSpectra folder, using a rise time of 350 and flat top of 200 for each (1.4 uS and 0.8 uS).
 
 ### EnergyCalibration.py: 
 Asks for .npy file location and the rise time used to create that file, then plots a histogram. Peaks are indicated on the histogram, and the program prints the channel, heights, and full width half max of those peaks. Enter the energies one by one (in keV) of a few of the highest peaks indicated, and the program will match the energies with the channel of those peaks, appending that data to calibrationdata.txt. The text file can be checked to see that the energies are matched with the correct peaks. This program will loop until no .npy file location is given.
