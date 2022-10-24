@@ -23,9 +23,9 @@ while True:
         filelocation = input("Copy & paste isotope .npy file path (press enter when done): ").strip('"')
         spectrarange = int(input("Enter rise time: "))*500
         spectra = np.load(filelocation)
-        hist, bins = np.histogram(spectra, bins = 2000, range = (0, spectrarange))
-        peaklocations, _ = find_peaks(hist, distance = 10, prominence = int(np.amax(hist))/3)
-        FWHM = peak_widths(hist, peaklocations, rel_height = 0.5)
+        hist, bins = np.histogram(spectra, bins=5000, range=(0, spectrarange))
+        peaklocations, _ = find_peaks(hist, distance=10, prominence=int(np.amax(hist))/5)
+        FWHM = peak_widths(hist, peaklocations, rel_height=0.5)
         Xaxisfactor = []
         peaklocations2 = []
         allFWHM = []
@@ -46,7 +46,7 @@ while True:
         averageheight = sum(allheights)/len(allheights)
         print('Average height = ' + str(averageheight) + ' counts')
         print('Average FWHM = ' + str(averageFWHM) + ' ' + str(x_label) + '\n')
-        plt.plot(Xaxisfactor, hist, label = filelocation)
+        plt.plot(Xaxisfactor, hist, label=filelocation)
         plt.plot(np_peaklocations2/calfactor, hist[np_peaklocations2], "vk")
     except Exception as e:
         if filelocation == '':

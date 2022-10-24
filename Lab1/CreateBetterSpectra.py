@@ -3,8 +3,8 @@ import numpy as np
 from scipy.optimize import curve_fit
 
 #adjust these values
-rt = 300 #risetime
-ft = 700 #flattop
+rt = 350 #risetime
+ft = 200 #flattop
 preTrgrDly = 1000
 XRange = 10000
 
@@ -14,8 +14,9 @@ def func(x, a, c, d):
 filelocation = input("Copy & paste .h5 file path: ")
 filelocation = filelocation.strip('"')
 with h5py.File(filelocation, 'r') as f:
+    useablefraction = 0
     spectra = []
-    for a in range(5000):
+    for a in range(120000):
         try:
             pulse = np.array(f['raw_data'][a, :XRange])
             baseline = np.average(pulse[:int(preTrgrDly//1.5)])
@@ -39,7 +40,9 @@ with h5py.File(filelocation, 'r') as f:
                         cpulse.append(bpulse[b]-bpulse[b-rt]-bpulse[b-(rt+ft)]+bpulse[b-(2*rt+ft)])
                 for b in range(1, int(preTrgrDly+2*rt+ft)):
                     dpulse.append(dpulse[b-1]*(1+popt[1])+cpulse[b])
-                spectra.append(np.average(dpulse[preTrgrDly+rt+100:preTrgrDly+rt+ft-100]))
+                spectra.append(np.average(dpulse[preTrgrDly+rt+50:preTrgrDly+rt+ft-50]))
+                useablefraction += 1
+                print(useablefraction)
         except:
             pass
     spectraname = input("Enter name of .npy file to save spectra: ")

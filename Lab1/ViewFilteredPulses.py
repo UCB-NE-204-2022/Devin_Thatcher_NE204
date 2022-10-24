@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
 #adjust these values
-rt = 300 #risetime
-ft = 700 #flattop
+rt = 200 #risetime
+ft = 200 #flattop
 preTrgrDly = 1000
-XRange = 10000
+XRange = 20000
 pulsesToPlot = 1000
 
 def func(x, a, c, d):
@@ -29,7 +29,7 @@ with h5py.File(filelocation, 'r') as f:
             decay = bpulse[preTrgrDly+100:XRange]
             x = np.linspace(preTrgrDly+100, XRange, XRange-(preTrgrDly+100))
             popt, pcov = curve_fit(func, x, decay, [200, 0.0001, 0])
-            if 0 < popt[1] < 0.01 and 0 < popt[2]:
+            if 0<popt[0] and 0<popt[1]<0.01 and 0<popt[2]:
                 for b in range(int(preTrgrDly+2*rt+ft)):
                     if b < rt:
                         cpulse.append(bpulse[b])
