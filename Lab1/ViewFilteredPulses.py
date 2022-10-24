@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
 #adjust these values
-rt = 200 #risetime
+rt = 350 #risetime
 ft = 200 #flattop
 preTrgrDly = 1000
-XRange = 20000
-pulsesToPlot = 1000
+XRange = 10000
+pulsesToPlot = 500
 
 def func(x, a, c, d):
     return a*np.exp(-c*x)+d

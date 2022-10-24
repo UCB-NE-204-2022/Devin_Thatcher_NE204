@@ -1,7 +1,7 @@
 import h5py
 import numpy as np
 
-XRange = 1800
+XRange = 2000
 preTrgrDly = 1000
 
 filelocation = input("Copy & paste .h5 file path: ")
