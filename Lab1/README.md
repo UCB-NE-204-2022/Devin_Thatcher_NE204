@@ -1,4 +1,4 @@
-Dependencies: numpy, matplotlib, scipy
+Dependencies: numpy, matplotlib, scipy, h5py
 
 The separate programs in this repository allows a user to:
 1. View the pulses from the HDF5 files
