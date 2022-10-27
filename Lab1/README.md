@@ -1,4 +1,6 @@
-Dependencies: numpy, matplotlib, scipy
+Dependencies: numpy, matplotlib, scipy, h5py
+
+HDF5 data files are in the HPGe folder of this Google Drive: https://drive.google.com/drive/folders/1lt_kLttrRhQ91nO9xtgCLip4QcroTRs7
 
 The separate programs in this repository allows a user to:
 1. View the pulses from the HDF5 files

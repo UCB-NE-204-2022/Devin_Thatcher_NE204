@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
-pulsesToPlot = 20
+pulsesToPlot = 100
 XRange = 10000
 
 def func(x, a, c, d):

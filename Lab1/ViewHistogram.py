@@ -47,7 +47,7 @@ while True:
         print('Average height = ' + str(averageheight) + ' counts')
         print('Average FWHM = ' + str(averageFWHM) + ' ' + str(x_label) + '\n')
         plt.plot(Xaxisfactor, hist, label=filelocation)
-        plt.plot(np_peaklocations2/calfactor, hist[np_peaklocations2], "vk")
+        #plt.plot(np_peaklocations2/calfactor, hist[np_peaklocations2], "vk")
     except Exception as e:
         if filelocation == '':
             break

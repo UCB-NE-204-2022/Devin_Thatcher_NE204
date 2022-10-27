@@ -3,7 +3,7 @@ import numpy as np
 from scipy.optimize import curve_fit
 
 #adjust these values
-rt = 350 #risetime
+rt = 400 #risetime
 ft = 200 #flattop
 preTrgrDly = 1000
 XRange = 10000
@@ -46,7 +46,7 @@ with h5py.File(filelocation, 'r') as f:
                 print(useablefraction)
         except:
             pass
-    print(useablefraction/events*100 + 'percent successful')
+    print(str(useablefraction/events*100) + ' percent successful')
     spectraname = input("Enter name of .npy file to save spectra: ")
     with open(spectraname + '.npy', 'wb') as f2:
         np.save(f2, np.array(spectra))

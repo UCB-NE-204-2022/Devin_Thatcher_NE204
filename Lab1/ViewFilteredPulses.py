@@ -8,7 +8,7 @@ rt = 350 #risetime
 ft = 200 #flattop
 preTrgrDly = 1000
 XRange = 10000
-events = 1000
+events = 100
 
 def func(x, a, c, d):
     return a*np.exp(-c*x)+d
@@ -29,7 +29,7 @@ with h5py.File(filelocation, 'r') as f:
             decay = bpulse[preTrgrDly+100:XRange]
             x = np.linspace(preTrgrDly+100, XRange, XRange-(preTrgrDly+100))
             popt, pcov = curve_fit(func, x, decay, [200, 0.0001, 0])
-            if 0<popt[0] and 0<popt[1]<0.01 and 0<popt[2]:
+            if 0<popt[0] and 0<popt[1] and 0<popt[2]:
                 for b in range(int(preTrgrDly+2*rt+ft)):
                     if b < rt:
                         cpulse.append(bpulse[b])
