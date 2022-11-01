@@ -14,9 +14,8 @@ while True:
     while True:
         try:
             filelocation = input("Copy & paste calibration isotope .npy file path: ").strip('"')
-            spectrarange = int(input("Enter rise time: "))*500
             spectra = np.load(filelocation)
-            hist, bins = np.histogram(spectra, bins = 5000, range = (0, spectrarange))
+            hist, bins = np.histogram(spectra, bins = 5000, range = (0, 500))
             peaklocations, _ = find_peaks(hist, distance = 10, prominence = int(np.amax(hist))/5)
             FWHM = peak_widths(hist, peaklocations, rel_height = 0.5)
             for x in range(np.size(peaklocations)):
@@ -49,7 +48,7 @@ while True:
     with open('calibrationdata.txt', 'a') as f:
         now = datetime.now()
         dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-        f.write('\n' + isotope + ' rise time: ' + str(spectrarange/500) + '\n' + dt_string + '\n')
+        f.write('\n' + isotope  + '\n' + dt_string + '\n')
         x = 0
         for y in range(np.size(peaklocations2)):
             if hist[int(peaklocations2[y])] in peakheights2:
