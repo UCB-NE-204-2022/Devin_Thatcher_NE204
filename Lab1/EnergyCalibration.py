@@ -15,7 +15,7 @@ while True:
         try:
             filelocation = input("Copy & paste calibration isotope .npy file path: ").strip('"')
             spectra = np.load(filelocation)
-            hist, bins = np.histogram(spectra, bins = 5000, range = (0, 500))
+            hist, bins = np.histogram(spectra, bins = 5000, range = (0, 1000))
             peaklocations, _ = find_peaks(hist, distance = 10, prominence = int(np.amax(hist))/5)
             FWHM = peak_widths(hist, peaklocations, rel_height = 0.5)
             for x in range(np.size(peaklocations)):

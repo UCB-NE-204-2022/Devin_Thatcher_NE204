@@ -41,7 +41,7 @@ with h5py.File(filelocation, 'r') as f:
                         cpulse.append(bpulse[b]-bpulse[b-rt]-bpulse[b-(rt+ft)]+bpulse[b-(2*rt+ft)])
                 for b in range(1, int(2*rt+ft+200)):
                     dpulse.append(dpulse[b-1]*(1+popt[1])+cpulse[b])
-                spectra.append((np.average(dpulse[preTrgrDly+rt+50:preTrgrDly+rt+ft-50]))/rt)
+                spectra.append((np.average(dpulse[rt+150:rt+ft+50]))/rt)
                 useablefraction += 1
                 print(useablefraction)
         except:
