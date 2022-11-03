@@ -3,8 +3,10 @@
 Dependencies: numpy, matplotlib, scipy, h5py
 
 HDF5 data files are in the HPGe folder of this Google Drive: <https://drive.google.com/drive/folders/1lt_kLttrRhQ91nO9xtgCLip4QcroTRs7>
+
 We ran this command below to acquire data:
 python data_subscriber.py -f sample_configs/CAMIS.json -i 192.168.1.[x] -v --save raw_hdf5 -sf [DATAFOLDER]/[FILENAME].h5 --max_t 120
+
 Settings are in DAQsettings folder
 
 The separate programs in this repository allows a user to:
@@ -32,7 +34,7 @@ Asks for HDF5 file location, then calculates the difference between the maximum 
 
 Asks for HDF5 file location, then for the first 120000 pulses: subtracts from the pulse the average of the pre-trigger delay, then fits an exponential. If the parameters found for the exponential fit are greater than zero: uses a trapezoid filter and integrates with pole-zero correction. An array of the average of each flat top is saved to a .npy file. Program also prints how many pulses have been processed successfully, since it takes a while to run.
 
-Used to create .npy files for Co60, Eu152, Cs137, Na22, and Ba133 in SampleSpectra folder, using a rise time of 400 and flat top of 200 for each (1.6 uS and 0.8 uS).
+Used to create .npy files for Co60, Eu152, Cs137, Na22, Ba133, Th228 in SampleSpectra folder, using a rise time of 400 and flat top of 200 for each (1.6 uS and 0.8 uS).
 
 ### EnergyCalibration.py
 
