@@ -14,7 +14,7 @@ filelocation = filelocation.strip('"')
 with h5py.File(filelocation, 'r') as f:
     for a in range(0, pulsesToPlot):
         try:
-            pulse = np.array(f['raw_data'][a, :XRange])
+            pulse = np.array(f['raw_data'][a, :XRange])  # type: ignore
             baseline = np.average(pulse[:800])
             bpulse = []
             for b in range(XRange):

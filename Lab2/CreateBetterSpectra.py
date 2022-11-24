@@ -5,10 +5,10 @@ from scipy.optimize import curve_fit
 #adjust these values
 rt = 50 #risetime
 ft = 30 #flattop
-preTrgrDly = 1000
+preTrgrDly = 900
 XRange = 1500
 events = 120000
-dc = 150
+dc = 250
 
 def func(x, a, c, d):
     return a*np.exp(-c*x)+d
