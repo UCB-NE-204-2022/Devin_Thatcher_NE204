@@ -19,7 +19,7 @@ with h5py.File(filelocation, 'r') as f:
     pulses = np.empty([events, 2*rt+ft+200])
     for a in range(events):
         try:
-            pulse = np.array(f['raw_data'][a, :XRange])
+            pulse = np.array(f['raw_data'][a, :XRange])  # type: ignore
             baseline = np.average(pulse[:int(preTrgrDly//1.5)])
             bpulse = []
             cpulse = []
