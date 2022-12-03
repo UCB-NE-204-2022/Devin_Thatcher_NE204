@@ -3,7 +3,7 @@ import numpy as np
 
 XRange = 2000
 preTrgrDly = 1000
-events = 120000
+events = 400000
 
 filelocation = input("Copy & paste .h5 file path: ")
 filelocation = filelocation.strip('"')
